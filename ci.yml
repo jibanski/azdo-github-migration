@@ -2,7 +2,7 @@
 trigger:
   branches:
     include:
-    - master
+    - main
 stages:
 - stage: Write
   displayName: "Write Something"
