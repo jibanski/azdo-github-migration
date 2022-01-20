@@ -1,30 +1,4 @@
-trigger: none
-
-name: Evaluate-$(REPO_NAME)-$(Date:yyyyMMdd)-$(BuildID)
-
-pool: 'classic-ci-pool'
-
-schedules:
-  - cron: '*/3 * * * 6' #runs every 3 minutes Saturday
-    branches:
-      include:
-        - master
-    always: true
-
-variables:
-  - group: 'classic-helper-variables'
-  - name: 'PROJECT_ID'
-    value: '3dc85e6b-b1cb-4003-a0e5-856c1f75d8b1' #Classic
-  - name: 'REPO_NAME'
-    value: 'cws'
-
-stages:
-- template: ../../templates/ci-evaluator.yml
-  parameters:
-    branchProperties:
-      - branchName: 'releaseCandidate'
-        pipelineID: 1141
-      - branchName: 'master'
-        pipelineID: 1146
-    repoName: '"${{ variables.REPO_NAME }}"'
-    projectId: ${{ variables.PROJECT_ID }}
+ trigger:
+  branches:
+    include:
+    - main
