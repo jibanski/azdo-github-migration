@@ -1,3 +1,19 @@
+# specific branch build
 trigger:
-- master
-- releases/*
+  branches:
+    include:
+    - master
+stages:
+- stage: Write
+  displayName: "Write Something"
+  jobs:
+    - job: WriteMyName
+      displayName: "Write my name"
+      steps:
+        - checkout: none
+        - task: PowerShell@2
+          displayName: "Trigger"
+          inputs:
+            targetType: 'inline'
+            script: |
+              Write-Host "Jibanski D Pogi"
