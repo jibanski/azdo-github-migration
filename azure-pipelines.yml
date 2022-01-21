@@ -1,7 +1,10 @@
-trigger: none
+trigger:
+  branches:
+    include:
+    - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: classic-ci-pool
 
 steps:
 - script: echo Hello, world!
