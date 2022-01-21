@@ -1,9 +1,5 @@
 # specific branch build
-trigger:
-  branches:
-    include:
-    - main
-    - rc
+trigger: none
 stages:
 - stage: Write
   displayName: "Write Something"
