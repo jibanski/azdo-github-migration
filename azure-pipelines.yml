@@ -4,7 +4,7 @@ trigger:
     - main
 
 pool:
-  vmImage: classic-ci-pool
+  vmImage: TestBuildAgent
 
 steps:
 - script: echo Hello, world!
