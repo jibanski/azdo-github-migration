@@ -3,7 +3,7 @@ trigger:
     include:
     - rc
 
-pool: classic-ci-pool
+pool: jibanski-pool
 
 steps:
 - script: echo Hello, world!
