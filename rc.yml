@@ -1,4 +1,7 @@
-trigger: none
+trigger:
+  branches:
+    include:
+    - rc
 
 pool: classic-ci-pool
 
