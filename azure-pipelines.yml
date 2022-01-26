@@ -1,16 +1,19 @@
 resources:
   repositories:
-  - repository: tools
+  - repository: product
     type: git
     name: Build and Deployment/product
     ref: main
     trigger:
     - main
     - rc
-  - repository: tools
+  - repository: product
     type: git
     name: Build and Deployment/brand
     ref: main
+    trigger:
+    - rc
+
 
 pool: default
 
