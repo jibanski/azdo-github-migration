@@ -16,7 +16,9 @@ resources:
   - repository: ncad
     endpoint: JSevillaOrg-JLabradaOrg
     type: git
-    name: JSevilla0055/Ncad
+    name: Ncad/Ncad
+    trigger:
+    - main
 
 pool: default
 
