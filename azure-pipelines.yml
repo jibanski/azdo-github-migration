@@ -13,7 +13,10 @@ resources:
     ref: main
     trigger:
     - rc
-
+  - repository: ncad
+    endpoint: 
+    type: git
+    name: JSevilla0055/Ncad
 
 pool: default
 
@@ -21,4 +24,5 @@ steps:
 - checkout: self
 - checkout: product
 - checkout: brand
+- checkout: ncad
 - script: dir $(Build.SourcesDirectory)
