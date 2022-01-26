@@ -14,7 +14,7 @@ resources:
     trigger:
     - rc
   - repository: ncad
-    endpoint: JSevillaOog-JLabradaOrg
+    endpoint: JSevillaOrg-JLabradaOrg
     type: git
     name: JSevilla0055/Ncad
 
