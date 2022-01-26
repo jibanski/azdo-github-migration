@@ -1,10 +1,21 @@
-trigger:
-  branches:
-    include:
+resources:
+  repositories:
+  - repository: tools
+    type: git
+    name: Build and Deployment/product
+    ref: main
+    trigger:
     - main
+    - rc
+  - repository: tools
+    type: git
+    name: Build and Deployment/brand
+    ref: main
 
 pool: default
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Merged to main'
+- checkout: self
+- checkout: product
+- checkout: brand
+- script: dir $(Build.SourcesDirectory)
