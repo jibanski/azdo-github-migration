@@ -10,14 +10,14 @@ resources:
   - repository: brand
     type: git
     name: Build and Deployment/brand
-    ref: main
+    ref: rc
     trigger:
     - rc
   - repository: ncad
     endpoint: jayben-jon
     type: git
     name: Ncad/Ncad
-    ref: main
+    ref: rc
     trigger:
     - rc
 
