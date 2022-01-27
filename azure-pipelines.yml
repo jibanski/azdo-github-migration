@@ -17,9 +17,9 @@ resources:
     endpoint: jayben-jon
     type: git
     name: Ncad/Ncad
-
-trigger:
-- main
+    ref: main
+    trigger:
+    - rc
 
 pool: default
 
