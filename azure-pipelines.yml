@@ -16,7 +16,7 @@ resources:
   - repository: ncad
     endpoint: jayben-jon
     type: git
-    name: Ncad/Ncad-Jibanski
+    name: Ncad/Ncad
     ref: rc
     trigger:
     - rc
