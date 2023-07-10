@@ -1,0 +1,2920 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:x="urn:schemas-microsoft-com:office:excel"
+      xmlns="http://www.w3.org/TR/REC-html40">
+    <head>
+        <title>Beeline JIRA</title>
+        <style type="text/css">
+         table {
+             mso-displayed-decimal-separator:"\.";
+             mso-displayed-thousand-separator:"\,";
+         }
+         body
+         {
+             margin: 0px;
+             font-size: 12px;
+             font-family: Arial, sans-serif;
+             color:black;
+         }
+
+        </style>
+        <META HTTP-EQUIV="Content-Type" Content="application/vnd.ms-excel; charset=UTF-8">
+        <!-- JRA-7598 - ensure fields (e.g. description) occupy only one cell - even fields containing newlines. -->
+        <!--
+             Vertical align all cells to the top, in order to align all issue rows of issuetable to the top,
+             since Excel does not use or save the css files it is hardcoded here.
+           -->
+        <style>
+         @page
+         {
+             mso-page-orientation:landscape;
+             margin:.25in .25in .5in .25in;
+             mso-header-margin:.5in;
+             mso-footer-margin:.25in;
+             mso-footer-data:"&R&P of &N";
+             mso-horizontal-page-align:center;
+             mso-vertical-page-align:center;
+         }
+
+         td.issuekey,
+         td.issuetype,
+         td.status {
+             mso-style-parent: "";
+             mso-number-format: \@;
+             text-align: left;
+         }
+         br
+         {
+             mso-data-placement:same-cell;
+         }
+
+         td
+         {
+             vertical-align: top;
+         }
+        </style>
+
+        <!--[if gte mso 9]><xml>
+            <x:ExcelWorkbook>
+            <x:ExcelWorksheets>
+            <x:ExcelWorksheet>
+            <x:Name>general_report</x:Name>
+            <x:WorksheetOptions>
+            <x:Print>
+            <x:ValidPrinterInfo/>
+            </x:Print>
+            </x:WorksheetOptions>
+            </x:ExcelWorksheet>
+            </x:ExcelWorksheets>
+            </x:ExcelWorkbook>
+            </xml><![endif]-->
+    </head>
+    <body>
+
+        <table border="1">
+            <tr bgcolor="#001b38" height="30">
+                <td colspan="12">
+                    <img src="https://jira.beeline.com/images/jira-generic.png" width="57" height="30" border="0" alt="Beeline JIRA">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12">
+                    <a href="https://jira.beeline.com/issues/?jql=key+in+%28IMPEXP-61781%2CIMPEXP-61232%2CIMPEXP-61231%2CIMPEXP-61205%2CIMPEXP-60941%2CIMPEXP-60921%2CIMPEXP-60920%2CIMPEXP-60763%2CIMPEXP-60724%2CIMPEXP-60498%2CIMPEXP-60412%2CIMPEXP-60062%2CIMPEXP-59960%2CIMPEXP-59233%2CIMPEXP-59168%2CIMPEXP-58383%2CIMPEXP-57933%2CIMPEXP-57914%2CIMPEXP-56806%2CIMPEXP-54725%2CIMPEXP-54708%2CIMPEXP-54471%2CIMPEXP-53433%2CCWS-592219%2CCWS-592198%2CCWS-592119%2CCWS-92117%2CCWS-592002%2CCWS-591946%2CCWS-591853%2CCWS-591833%2CCWS-591804%2CCWS-591493%2CCWS-591486%2CCWS-591467%2CCWS-591430%2CCWS-590512%2CCWS-587675%2CCWS-585119%2CCWS-583509%2CCWS-592779%2CCWS-592781%2CCWS-592565%2CCWS-592899%2CCWS-592900%2CCWS-592961%2CCWS-592979%2CCWS-592973%2CCWS-593023%2CCWS-592782%2CCWS-592997%2CCWS-592996%2CIMPEXP-61951%2CCWS-592711%2CCWS-593044%2CCWS-592427%2CCWS-92983%2CCWS-593033%2CCWS-593049%2CIMPEXP-62049%2CIMPEXP-62068%2CCWS-592658%2CIMPEXP-61983%2CCWS-592927%2CCWS-592787%2CCWS-592616%29" data-testid="filterNameHref">Beeline JIRA</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12">
+                    Displaying <strong>64</strong> issues at <strong>07/05/23 06:09 AM</strong>.
+                </td>
+            </tr>
+        </table>
+
+        
+
+
+                            <issuetable-web-component data-content="issues">
+                <table id="issuetable"  border="1" cellpadding="3" cellspacing="1" width="100%">
+                        <thead>
+        <tr class="rowHeader">
+            
+                                                            <th class="colHeaderLink headerrow-priority" data-id="priority">
+                            Priority
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-issuetype" data-id="issuetype">
+                            Issue Type
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-issuekey" data-id="issuekey">
+                            Key
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-summary" data-id="summary">
+                            Summary
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-status" data-id="status">
+                            Status
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-assignee" data-id="assignee">
+                            Assignee
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-reporter" data-id="reporter">
+                            Reporter
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_16911" data-id="customfield_16911">
+                            Dev Time to SLA
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-duedate" data-id="duedate">
+                            Due Date
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-resolutiondate" data-id="resolutiondate">
+                            Resolved
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_11810" data-id="customfield_11810">
+                            Team
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10013" data-id="customfield_10013">
+                            Client Name
+                                                    </th>
+                                                                    </tr>
+    </thead>
+    <tbody>
+                    
+
+                <tr id="issuerow1254073" rel="1254073" data-issuekey="IMPEXP-62068" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-62068" href="https://jira.beeline.com/browse/IMPEXP-62068">IMPEXP-62068</a>
+</td>
+                                            <td class="summary"><p>
+                MBDA BL upgrade + SP - UK - PO download feed step fired but record not available on file
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Open for Analysis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Waiting to be Worked&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Open for Analysis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Waiting to be Worked&lt;/span&gt;">Open for Analysis</span>    </td>
+                                            <td class="assignee">            Patrick Feige
+    </td>
+                                            <td class="reporter">            Patrick Feige
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/848">InteGreat</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>MBDA UK</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1253381" rel="1253381" data-issuekey="IMPEXP-62049" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-62049" href="https://jira.beeline.com/browse/IMPEXP-62049">IMPEXP-62049</a>
+</td>
+                                            <td class="summary"><p>
+                Lockheed Martin - Auth0 Identities are Not Getting Created for Imported Users
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Laura Hendricks
+    </td>
+                                            <td class="reporter">            Laura Hendricks
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> 06/06/23 11:54 AM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/846">Cipher</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Lockheed Martin Corporation</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1250995" rel="1250995" data-issuekey="IMPEXP-61983" class="issuerow">
+                                            <td class="priority">           Non-Severity 
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-61983" href="https://jira.beeline.com/browse/IMPEXP-61983">IMPEXP-61983</a>
+</td>
+                                            <td class="summary"><p>
+                Heraeus - CoreEntityType.Candidate is not showing German translation in Notifications
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;">Resolved</span>    </td>
+                                            <td class="assignee">            Ricardo Smith
+    </td>
+                                            <td class="reporter">            Ricardo Smith
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> 06/07/23 04:06 AM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Heraeus Group</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1241878" rel="1241878" data-issuekey="IMPEXP-61781" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-61781" href="https://jira.beeline.com/browse/IMPEXP-61781">IMPEXP-61781</a>
+</td>
+                                            <td class="summary"><p>
+                Cisco | PO Download Delete Milestone in amending sow does not download. 
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Joe Schnur
+    </td>
+                                            <td class="reporter">            Joe Schnur
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> 06/05/23 02:42 PM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/848">InteGreat</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Cisco Systems</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1228083" rel="1228083" data-issuekey="IMPEXP-61232" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-61232" href="https://jira.beeline.com/browse/IMPEXP-61232">IMPEXP-61232</a>
+</td>
+                                            <td class="summary"><p>
+                Caterpillar Phase 1 Migration - FS7200 Validation is Not Available
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            John Duce
+    </td>
+                                            <td class="reporter">            James Longtain
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Caterpillar</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1228071" rel="1228071" data-issuekey="IMPEXP-61231" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-61231" href="https://jira.beeline.com/browse/IMPEXP-61231">IMPEXP-61231</a>
+</td>
+                                            <td class="summary"><p>
+                JM Family - Error Importing CDF Values to Resource Pool
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Michael Vaughn
+    </td>
+                                            <td class="reporter">            Michael Vaughn
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>JM Family Enterprises</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1227492" rel="1227492" data-issuekey="IMPEXP-61205" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-61205" href="https://jira.beeline.com/browse/IMPEXP-61205">IMPEXP-61205</a>
+</td>
+                                            <td class="summary"><p>
+                Caterpillar - Cost Allocation Import Template - Not Updating Cost Allocation Values on Imported (Grandfathered) Assignments
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            James Longtain
+    </td>
+                                            <td class="reporter">            Shannon Fisher
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Caterpillar</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1223211" rel="1223211" data-issuekey="IMPEXP-60941" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-60941" href="https://jira.beeline.com/browse/IMPEXP-60941">IMPEXP-60941</a>
+</td>
+                                            <td class="summary"><p>
+                Wells Fargo - Shared Services Contributor Type Removed when already setup from template
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Open for Analysis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Waiting to be Worked&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Open for Analysis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Waiting to be Worked&lt;/span&gt;">Open for Analysis</span>    </td>
+                                            <td class="assignee">            Raphael Hiquiana
+    </td>
+                                            <td class="reporter">            Jeff David
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Wells Fargo</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1222826" rel="1222826" data-issuekey="IMPEXP-60921" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-60921" href="https://jira.beeline.com/browse/IMPEXP-60921">IMPEXP-60921</a>
+</td>
+                                            <td class="summary"><p>
+                APS (PRODUCTION) | Feed Step Rehire triggered instead of Feed Step Send/New
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Jolet Leonardo
+    </td>
+                                            <td class="reporter">            Jolet Leonardo
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Arizona Public Service</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1222824" rel="1222824" data-issuekey="IMPEXP-60920" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-60920" href="https://jira.beeline.com/browse/IMPEXP-60920">IMPEXP-60920</a>
+</td>
+                                            <td class="summary"><p>
+                APS (PRODUCTION) | Resource Matching and Profiles Linking Did Not Work?
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Jolet Leonardo
+    </td>
+                                            <td class="reporter">            Jolet Leonardo
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Arizona Public Service</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1219863" rel="1219863" data-issuekey="IMPEXP-60763" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-60763" href="https://jira.beeline.com/browse/IMPEXP-60763">IMPEXP-60763</a>
+</td>
+                                            <td class="summary"><p>
+                 Geodis - WDL Data Incorrect
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Stacey Miguel
+    </td>
+                                            <td class="reporter">            Stacey Miguel
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Geodis</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1219219" rel="1219219" data-issuekey="IMPEXP-60724" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-60724" href="https://jira.beeline.com/browse/IMPEXP-60724">IMPEXP-60724</a>
+</td>
+                                            <td class="summary"><p>
+                Premier: Tax Job Category
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Open for Analysis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Waiting to be Worked&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Open for Analysis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Waiting to be Worked&lt;/span&gt;">Open for Analysis</span>    </td>
+                                            <td class="assignee">            Anthony Ciccone
+    </td>
+                                            <td class="reporter">            Nelson Alzate
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Premier</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1214595" rel="1214595" data-issuekey="IMPEXP-60498" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-60498" href="https://jira.beeline.com/browse/IMPEXP-60498">IMPEXP-60498</a>
+</td>
+                                            <td class="summary"><p>
+                APS | Worker Download UDFs NOT Populating
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Jolet Leonardo
+    </td>
+                                            <td class="reporter">            Jolet Leonardo
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Arizona Public Service</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1213125" rel="1213125" data-issuekey="IMPEXP-60412" class="issuerow">
+                                            <td class="priority">           Critical
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-60412" href="https://jira.beeline.com/browse/IMPEXP-60412">IMPEXP-60412</a>
+</td>
+                                            <td class="summary"><p>
+                ZS Associates - SSO Users Locked out After Clicking HMX Toggle Button
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Kaley Nelson
+    </td>
+                                            <td class="reporter">            Kaley Nelson
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>ZS Associates</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1207030" rel="1207030" data-issuekey="IMPEXP-60062" class="issuerow">
+                                            <td class="priority">           Critical
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-60062" href="https://jira.beeline.com/browse/IMPEXP-60062">IMPEXP-60062</a>
+</td>
+                                            <td class="summary"><p>
+                Boston Scientific - Test Environment - Invoice files trying to copy twice from Preout to OutArchive / Out 
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Naveen Abburi
+    </td>
+                                            <td class="reporter">            Naveen Abburi
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Boston Scientific</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1205288" rel="1205288" data-issuekey="IMPEXP-59960" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-59960" href="https://jira.beeline.com/browse/IMPEXP-59960">IMPEXP-59960</a>
+</td>
+                                            <td class="summary"><p>
+                APS | &quot;Terminate On Time&quot; TERM FEED no longer works
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Jolet Leonardo
+    </td>
+                                            <td class="reporter">            Jolet Leonardo
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Arizona Public Service</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1190938" rel="1190938" data-issuekey="IMPEXP-59233" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-59233" href="https://jira.beeline.com/browse/IMPEXP-59233">IMPEXP-59233</a>
+</td>
+                                            <td class="summary"><p>
+                APS | Matched Candidate DID NOT inherit the Existing Worker Username after Onboarding
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Jolet Leonardo
+    </td>
+                                            <td class="reporter">            Jolet Leonardo
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Arizona Public Service</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1189715" rel="1189715" data-issuekey="IMPEXP-59168" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-59168" href="https://jira.beeline.com/browse/IMPEXP-59168">IMPEXP-59168</a>
+</td>
+                                            <td class="summary"><p>
+                APS | &quot;Beeline ID Confirmed&quot; Defaulting to YES, causing Candidate Matching not to trigger
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Jolet Leonardo
+    </td>
+                                            <td class="reporter">            Jolet Leonardo
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Arizona Public Service</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1174068" rel="1174068" data-issuekey="IMPEXP-58383" class="issuerow">
+                                            <td class="priority">           Critical
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-58383" href="https://jira.beeline.com/browse/IMPEXP-58383">IMPEXP-58383</a>
+</td>
+                                            <td class="summary"><p>
+                CIBC – Add 2nd API for RaaS JSON Reporting
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Open for Analysis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Waiting to be Worked&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Open for Analysis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Waiting to be Worked&lt;/span&gt;">Open for Analysis</span>    </td>
+                                            <td class="assignee">            Steven Fuata
+    </td>
+                                            <td class="reporter">            Rodney Barrera
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>CIBC</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1166290" rel="1166290" data-issuekey="IMPEXP-57933" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-57933" href="https://jira.beeline.com/browse/IMPEXP-57933">IMPEXP-57933</a>
+</td>
+                                            <td class="summary"><p>
+                Allianz GI- CWS + SOW - Kelly MSP partner connector EFT error when pushing files to client SFTP
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Patrick Feige
+    </td>
+                                            <td class="reporter">            Patrick Feige
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Allianz Global Investors</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1165971" rel="1165971" data-issuekey="IMPEXP-57914" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-57914" href="https://jira.beeline.com/browse/IMPEXP-57914">IMPEXP-57914</a>
+</td>
+                                            <td class="summary"><p>
+                Allianz GI- CWS + SOW - EFT error when pushing files to client SFTP
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Patrick Feige
+    </td>
+                                            <td class="reporter">            Patrick Feige
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Allianz Global Investors</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1142036" rel="1142036" data-issuekey="IMPEXP-56806" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-56806" href="https://jira.beeline.com/browse/IMPEXP-56806">IMPEXP-56806</a>
+</td>
+                                            <td class="summary"><p>
+                CLONE - Eli Lilly - Term Record Not Sent on Worker Download
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Natasha Chapman
+    </td>
+                                            <td class="reporter">            Natasha Chapman
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Eli Lilly and Company</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1112178" rel="1112178" data-issuekey="IMPEXP-54725" class="issuerow">
+                                            <td class="priority">           Non-Severity 
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-54725" href="https://jira.beeline.com/browse/IMPEXP-54725">IMPEXP-54725</a>
+</td>
+                                            <td class="summary"><p>
+                M&amp;G - CWS - UK/IRE - WDL duplicate new records
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Patrick Feige
+    </td>
+                                            <td class="reporter">            Patrick Feige
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>M&amp;G plc</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1111987" rel="1111987" data-issuekey="IMPEXP-54708" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-54708" href="https://jira.beeline.com/browse/IMPEXP-54708">IMPEXP-54708</a>
+</td>
+                                            <td class="summary"><p>
+                M&amp;G - CWS - UK/IRE - Unable to retrieve API results for WDL
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Open for Analysis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Waiting to be Worked&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Open for Analysis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Waiting to be Worked&lt;/span&gt;">Open for Analysis</span>    </td>
+                                            <td class="assignee">            Patrick Feige
+    </td>
+                                            <td class="reporter">            Patrick Feige
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>M&amp;G plc</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1109360" rel="1109360" data-issuekey="IMPEXP-54471" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-54471" href="https://jira.beeline.com/browse/IMPEXP-54471">IMPEXP-54471</a>
+</td>
+                                            <td class="summary"><p>
+                CSL - CA Tax not able to pull to 3 decimal places
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Jordan Singh
+    </td>
+                                            <td class="reporter">            Jordan Singh
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>CSL Behring</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1091910" rel="1091910" data-issuekey="IMPEXP-53433" class="issuerow">
+                                            <td class="priority">           Non-Severity 
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="IMPEXP-53433" href="https://jira.beeline.com/browse/IMPEXP-53433">IMPEXP-53433</a>
+</td>
+                                            <td class="summary"><p>
+                UST | Developer Portal (Edge) API | Random &quot;The system could not process your request&quot; Error
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Josh DeNapoli
+    </td>
+                                            <td class="reporter">            Jolet Leonardo
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate"></td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>UST Global</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1249905" rel="1249905" data-issuekey="CWS-593523" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Story
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-593523" href="https://jira.beeline.com/browse/CWS-593523">CWS-593523</a>
+</td>
+                                            <td class="summary"><p>
+                Heraeus - Operational Timesheet - Issue with Operational &quot;Timesheet - Estimated Gross&quot; not applying
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;">In Progress</span>    </td>
+                                            <td class="assignee">            Cj Aspa
+    </td>
+                                            <td class="reporter">            David Sanchez
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/849">Fintastic</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Heraeus Group</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1254538" rel="1254538" data-issuekey="CWS-593049" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-593049" href="https://jira.beeline.com/browse/CWS-593049">CWS-593049</a>
+</td>
+                                            <td class="summary"><p>
+                Akamai -Administration- Client users issue with Project Site (VMS168223)
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Open for Analysis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Waiting to be Worked&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Open for Analysis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Waiting to be Worked&lt;/span&gt;">Open for Analysis</span>    </td>
+                                            <td class="assignee">            Chrystiana Sta Cruz
+    </td>
+                                            <td class="reporter">            Chrystiana Sta Cruz
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div class="tts-lozenge tts-lozenge--safe shorter"
+                                 id="tts-CWS-593049-customfield_16911-1">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-check normal-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue met SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P4 - High">
+                                    147 hours, 33 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/827">HMX</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Akamai Technologies</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1254465" rel="1254465" data-issuekey="CWS-593044" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-593044" href="https://jira.beeline.com/browse/CWS-593044">CWS-593044</a>
+</td>
+                                            <td class="summary"><p>
+                WPP - Performance - Beeline Responsiveness Challenges
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;">Resolved</span>    </td>
+                                            <td class="assignee">            Josh DeNapoli
+    </td>
+                                            <td class="reporter">            Josh DeNapoli
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-593044-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 61 hours, 22 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/13/23 03:38 AM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>WPP Group Holdings</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1254366" rel="1254366" data-issuekey="CWS-593033" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-593033" href="https://jira.beeline.com/browse/CWS-593033">CWS-593033</a>
+</td>
+                                            <td class="summary"><p>
+                MSFT - OFTA Scheduled Reports error
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;">Resolved</span>    </td>
+                                            <td class="assignee">            Jessica Dumaua
+    </td>
+                                            <td class="reporter">            Jessica Dumaua
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div class="tts-lozenge tts-lozenge--safe shorter"
+                                 id="tts-CWS-593033-customfield_16911-1">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-check normal-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue met SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P4 - High">
+                                    108 hours, 35 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 07/05/23 04:10 AM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Microsoft</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1254211" rel="1254211" data-issuekey="CWS-593023" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-593023" href="https://jira.beeline.com/browse/CWS-593023">CWS-593023</a>
+</td>
+                                            <td class="summary"><p>
+                Credit Suisse -  Scheduled Report Process Error
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Summer Westbrook
+    </td>
+                                            <td class="reporter">            Summer Westbrook
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div class="tts-lozenge tts-lozenge--safe shorter"
+                                 id="tts-CWS-593023-customfield_16911-1">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-check normal-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue met SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    52 hours, 59 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/02/23 02:40 PM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Credit Suisse</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1253899" rel="1253899" data-issuekey="CWS-592997" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592997" href="https://jira.beeline.com/browse/CWS-592997">CWS-592997</a>
+</td>
+                                            <td class="summary"><p>
+                Covanta - Supplier unable to accept offer on request
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;">Resolved</span>    </td>
+                                            <td class="assignee">            Grepen Sumalpong
+    </td>
+                                            <td class="reporter">            Grepen Sumalpong
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592997-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 55 hours, 27 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/02/23 11:09 PM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Covanta Holding Corporation</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1253850" rel="1253850" data-issuekey="CWS-592996" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592996" href="https://jira.beeline.com/browse/CWS-592996">CWS-592996</a>
+</td>
+                                            <td class="summary"><p>
+                Axpo - Stuck in PO Upload status
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Mano Narayinthiran
+    </td>
+                                            <td class="reporter">            Roser Santos
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592996-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 15 hours, 48 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/06/23 09:22 AM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Axpo Holding AG</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1253712" rel="1253712" data-issuekey="CWS-592979" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592979" href="https://jira.beeline.com/browse/CWS-592979">CWS-592979</a>
+</td>
+                                            <td class="summary"><p>
+                Premier Inc. Production Site Slowness
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;">Resolved</span>    </td>
+                                            <td class="assignee">            Curtis Gaulding
+    </td>
+                                            <td class="reporter">            Kerry Patalano
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592979-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 191 hours, 33 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 07/03/23 09:02 AM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Premier</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1253682" rel="1253682" data-issuekey="CWS-592973" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592973" href="https://jira.beeline.com/browse/CWS-592973">CWS-592973</a>
+</td>
+                                            <td class="summary"><p>
+                Molina - Vendor unable to invoice milestone
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Chris Bayaga
+    </td>
+                                            <td class="reporter">            Gemma Logrono
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592973-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 54 hours, 23 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/28/23 05:53 AM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Molina Healthcare</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1253582" rel="1253582" data-issuekey="CWS-592961" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592961" href="https://jira.beeline.com/browse/CWS-592961">CWS-592961</a>
+</td>
+                                            <td class="summary"><p>
+                Henkel - Beeline Payment milestone imports
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Jessica Dumaua
+    </td>
+                                            <td class="reporter">            Jessica Dumaua
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592961-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 27 hours, 33 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/06/23 11:02 AM </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Henkel</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1253378" rel="1253378" data-issuekey="CWS-592927" class="issuerow">
+                                            <td class="priority">           Non-Severity 
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592927" href="https://jira.beeline.com/browse/CWS-592927">CWS-592927</a>
+</td>
+                                            <td class="summary"><p>
+                RCA Request for Tech-18115
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Adriane Ross
+    </td>
+                                            <td class="reporter">            Mhara Banluta
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/02/23 03:48 PM </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Cognizant</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1253127" rel="1253127" data-issuekey="CWS-592900" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592900" href="https://jira.beeline.com/browse/CWS-592900">CWS-592900</a>
+</td>
+                                            <td class="summary"><p>
+                Microsoft- BTE- Expired assignment is visible in a timesheet instead of new assignment
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Gemma Logrono
+    </td>
+                                            <td class="reporter">            Gemma Logrono
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592900-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 187 hours, 5 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/15/23 10:52 AM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Microsoft</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1253124" rel="1253124" data-issuekey="CWS-592899" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592899" href="https://jira.beeline.com/browse/CWS-592899">CWS-592899</a>
+</td>
+                                            <td class="summary"><p>
+                Sales Site 04- Unable to login during demo 
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Kristin Schwartz
+    </td>
+                                            <td class="reporter">            Courtney Ramsey
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592899-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 68 hours, 37 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/08/23 04:37 PM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/846">Cipher</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Beeline</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1251624" rel="1251624" data-issuekey="CWS-592787" class="issuerow">
+                                            <td class="priority">           Non-Severity 
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592787" href="https://jira.beeline.com/browse/CWS-592787">CWS-592787</a>
+</td>
+                                            <td class="summary"><p>
+                RCA - URGENT /  Lloyds Banking Group -  Password Reset / Login Issue - Error message
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Charles Catig
+    </td>
+                                            <td class="reporter">            Charles Catig
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/07/23 08:59 AM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Lloyds</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1251564" rel="1251564" data-issuekey="CWS-592782" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592782" href="https://jira.beeline.com/browse/CWS-592782">CWS-592782</a>
+</td>
+                                            <td class="summary"><p>
+                EON Germany - Inconsistent DocGen Behavior in ProjEU67 and Production
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Chris Bayaga
+    </td>
+                                            <td class="reporter">            Chris Bayaga
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592782-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 79 hours</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/05/23 03:29 AM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>EON</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1251563" rel="1251563" data-issuekey="CWS-592781" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592781" href="https://jira.beeline.com/browse/CWS-592781">CWS-592781</a>
+</td>
+                                            <td class="summary"><p>
+                Freddie Mac - Administration - FM - Beeline Performance issue
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;">Resolved</span>    </td>
+                                            <td class="assignee">            Charles Catig
+    </td>
+                                            <td class="reporter">            Charles Catig
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592781-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 360 hours, 59 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/23/23 03:50 PM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Freddie Mac</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1251532" rel="1251532" data-issuekey="CWS-592779" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592779" href="https://jira.beeline.com/browse/CWS-592779">CWS-592779</a>
+</td>
+                                            <td class="summary"><p>
+                Microsoft - Administration - Beeline Production Site - extremely slow, unable to process request error 858601
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Charles Catig
+    </td>
+                                            <td class="reporter">            Charles Catig
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592779-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 203 hours, 7 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/07/23 11:14 AM </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Microsoft</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1250807" rel="1250807" data-issuekey="CWS-592711" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592711" href="https://jira.beeline.com/browse/CWS-592711">CWS-592711</a>
+</td>
+                                            <td class="summary"><p>
+                Lowes - Beeline Receipts Files - 00858274
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Tina Combs
+    </td>
+                                            <td class="reporter">            Tina Combs
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592711-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 20 hours, 26 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/05/23 09:22 AM </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Lowe&#39;s</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1250430" rel="1250430" data-issuekey="CWS-592658" class="issuerow">
+                                            <td class="priority">           Non-Severity 
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592658" href="https://jira.beeline.com/browse/CWS-592658">CWS-592658</a>
+</td>
+                                            <td class="summary"><p>
+                RCA - URGENT / GLOBAL: Supplier User Accounts in Beeline have been deactivated
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Curtis Gaulding
+    </td>
+                                            <td class="reporter">            Ichi Reyes
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Meta</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1249832" rel="1249832" data-issuekey="CWS-592616" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592616" href="https://jira.beeline.com/browse/CWS-592616">CWS-592616</a>
+</td>
+                                            <td class="summary"><p>
+                PNC - URGENT - Issue with Grace Period Assignment Extensions on SOW Assignments
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Marian Aliviado
+    </td>
+                                            <td class="reporter">            Marian Aliviado
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592616-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P4 - High">
+                                    - 36 hours, 42 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/07/23 01:51 PM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>PNC</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1249506" rel="1249506" data-issuekey="CWS-592565" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592565" href="https://jira.beeline.com/browse/CWS-592565">CWS-592565</a>
+</td>
+                                            <td class="summary"><p>
+                File Locker login issue
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Eunice Lubay
+    </td>
+                                            <td class="reporter">            Eunice Lubay
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592565-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 369 hours, 21 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>EXEL</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1248741" rel="1248741" data-issuekey="CWS-592427" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592427" href="https://jira.beeline.com/browse/CWS-592427">CWS-592427</a>
+</td>
+                                            <td class="summary"><p>
+                Chick-fil-A - Administration - Beeline - Linked Account Issue 
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Charles Catig
+    </td>
+                                            <td class="reporter">            Charles Catig
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592427-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P4 - High">
+                                    - 292 hours, 37 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/19/23 08:28 AM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/846">Cipher</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Chick-fil-A</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1248285" rel="1248285" data-issuekey="CWS-592219" class="issuerow">
+                                            <td class="priority">           Non-Severity 
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592219" href="https://jira.beeline.com/browse/CWS-592219">CWS-592219</a>
+</td>
+                                            <td class="summary"><p>
+                Trane: Unable to translate error
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Ricardo Smith
+    </td>
+                                            <td class="reporter">            Edgar Alvarez
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/05/23 09:56 AM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Trane Technologies</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1245321" rel="1245321" data-issuekey="CWS-592198" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592198" href="https://jira.beeline.com/browse/CWS-592198">CWS-592198</a>
+</td>
+                                            <td class="summary"><p>
+                AON - Procurement - Offer sent to internal approval when not needed
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Gemma Logrono
+    </td>
+                                            <td class="reporter">            Gemma Logrono
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592198-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 46 hours, 36 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/02/23 11:09 PM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>AON</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1244637" rel="1244637" data-issuekey="CWS-592119" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592119" href="https://jira.beeline.com/browse/CWS-592119">CWS-592119</a>
+</td>
+                                            <td class="summary"><p>
+                Cerner- Performance- Historical Approvals - Not Loading
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Ellen Munson
+    </td>
+                                            <td class="reporter">            Noah Rolf
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592119-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 443 hours, 44 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/827">HMX</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Cerner</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1243420" rel="1243420" data-issuekey="CWS-592002" class="issuerow">
+                                            <td class="priority">           Critical
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-592002" href="https://jira.beeline.com/browse/CWS-592002">CWS-592002</a>
+</td>
+                                            <td class="summary"><p>
+                MSFT - Assignment Timesheet Error - 00857605
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Chrystiana Sta Cruz
+    </td>
+                                            <td class="reporter">            Chrystiana Sta Cruz
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-592002-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P2 - Critical">
+                                    - 331 hours, 7 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/12/23 09:29 AM </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Microsoft</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1242649" rel="1242649" data-issuekey="CWS-591946" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-591946" href="https://jira.beeline.com/browse/CWS-591946">CWS-591946</a>
+</td>
+                                            <td class="summary"><p>
+                CSL - Global/NA -161366 Updates to Compliance Items - unable to save
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Osiris Carrasquillo
+    </td>
+                                            <td class="reporter">            Karen Robinson
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-591946-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P4 - High">
+                                    - 146 hours, 53 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/07/23 11:41 AM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>CSL Behring</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1241822" rel="1241822" data-issuekey="CWS-591853" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-591853" href="https://jira.beeline.com/browse/CWS-591853">CWS-591853</a>
+</td>
+                                            <td class="summary"><p>
+                APS: STB job prevented Client User API from running successfully
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;">Resolved</span>    </td>
+                                            <td class="assignee">            Steven Fuata
+    </td>
+                                            <td class="reporter">            Renee Loyola
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div class="tts-lozenge tts-lozenge--safe shorter"
+                                 id="tts-CWS-591853-customfield_16911-1">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-check normal-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue met SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    50 hours, 12 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 07/02/23 03:04 AM </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Arizona Public Service</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1241490" rel="1241490" data-issuekey="CWS-591833" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-591833" href="https://jira.beeline.com/browse/CWS-591833">CWS-591833</a>
+</td>
+                                            <td class="summary"><p>
+                CLONE - Under the Data Erasure, after setting up my policies, I am trying to run what needs to be erased and it just keeps error-ing out
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;">Resolved</span>    </td>
+                                            <td class="assignee">            Rachel Broward
+    </td>
+                                            <td class="reporter">            Rachel Broward
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-591833-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 411 hours, 17 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/20/23 12:52 PM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>JPMC</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1241250" rel="1241250" data-issuekey="CWS-591804" class="issuerow">
+                                            <td class="priority">           Non-Severity 
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-591804" href="https://jira.beeline.com/browse/CWS-591804">CWS-591804</a>
+</td>
+                                            <td class="summary"><p>
+                Regeneron - API Report Intermittent 504 Gateway Time Out
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Gregorio Alicante
+    </td>
+                                            <td class="reporter">            Roser Santos
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Regeneron Phamaceuticals</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1238895" rel="1238895" data-issuekey="CWS-591493" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-591493" href="https://jira.beeline.com/browse/CWS-591493">CWS-591493</a>
+</td>
+                                            <td class="summary"><p>
+                Credit Suisse -Performance- Test site performance
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Chrystiana Sta Cruz
+    </td>
+                                            <td class="reporter">            Chrystiana Sta Cruz
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-591493-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P4 - High">
+                                    - 448 hours</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Credit Suisse</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1238849" rel="1238849" data-issuekey="CWS-591486" class="issuerow">
+                                            <td class="priority">           Non-Severity 
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-591486" href="https://jira.beeline.com/browse/CWS-591486">CWS-591486</a>
+</td>
+                                            <td class="summary"><p>
+                CLONE - ACT GOV - Contractor with 2 Assignments Cannot Save Hours on Timesheets
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Resolved&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;A resolution has been taken, and it is awaiting verification by reporter. From here issues are either reopened, or are closed.&lt;/span&gt;">Resolved</span>    </td>
+                                            <td class="assignee">            Rodney Supanovich
+    </td>
+                                            <td class="reporter">            Rodney Supanovich
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/23/23 11:19 PM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>NSW ACT Government</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1238586" rel="1238586" data-issuekey="CWS-591467" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-591467" href="https://jira.beeline.com/browse/CWS-591467">CWS-591467</a>
+</td>
+                                            <td class="summary"><p>
+                Error screens in Beeline production
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-success jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Closed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.&lt;/span&gt;">Closed</span>    </td>
+                                            <td class="assignee">            Rachel Broward
+    </td>
+                                            <td class="reporter">            Rachel Broward
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-591467-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P4 - High">
+                                    - 991 hours, 1 minute</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> 06/07/23 02:35 PM </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/762">Production Support</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Regeneron Phamaceuticals</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1238290" rel="1238290" data-issuekey="CWS-591430" class="issuerow">
+                                            <td class="priority">           High
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-591430" href="https://jira.beeline.com/browse/CWS-591430">CWS-591430</a>
+</td>
+                                            <td class="summary"><p>
+                Sales Sites Latency Issues 
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Courtney Ramsey
+    </td>
+                                            <td class="reporter">            Courtney Ramsey
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-591430-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P4 - High">
+                                    - 456 hours, 59 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Beeline</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1230734" rel="1230734" data-issuekey="CWS-590512" class="issuerow">
+                                            <td class="priority">           Non-Severity 
+    </td>
+                                            <td class="issuetype">    Story
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-590512" href="https://jira.beeline.com/browse/CWS-590512">CWS-590512</a>
+</td>
+                                            <td class="summary"><p>
+                LTS - PNC Long Running PNS Invoice
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-inprogress jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;In Progress&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;This issue is being actively worked on at the moment by the assignee.&lt;/span&gt;">In Progress</span>    </td>
+                                            <td class="assignee">            Sean Ith
+    </td>
+                                            <td class="reporter">            * Finance Steady State *
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">                <a href="/secure/Tempo.jspa#/teams/team/849">Fintastic</a>
+    </td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>PNC</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1206638" rel="1206638" data-issuekey="CWS-587675" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-587675" href="https://jira.beeline.com/browse/CWS-587675">CWS-587675</a>
+</td>
+                                            <td class="summary"><p>
+                Encore - Performance - Slow Loading Site Performance
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Open for Analysis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Waiting to be Worked&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Open for Analysis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Waiting to be Worked&lt;/span&gt;">Open for Analysis</span>    </td>
+                                            <td class="assignee">            Lauren McCollum
+    </td>
+                                            <td class="reporter">            Lauren McCollum
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-587675-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 1679 hours, 58 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    10/08/22
+</td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Encore</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1186042" rel="1186042" data-issuekey="CWS-585119" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-585119" href="https://jira.beeline.com/browse/CWS-585119">CWS-585119</a>
+</td>
+                                            <td class="summary"><p>
+                Site Latency
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Krisan Davidson
+    </td>
+                                            <td class="reporter">            Krisan Davidson
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-585119-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 2328 hours</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Beeline</span>			            </div>
+</td>
+                    </tr>
+
+
+                <tr id="issuerow1168427" rel="1168427" data-issuekey="CWS-583509" class="issuerow">
+                                            <td class="priority">           Fast Track
+    </td>
+                                            <td class="issuetype">    Bug/Problem
+</td>
+                                            <td class="issuekey">
+
+    <a class="issue-link" data-issue-key="CWS-583509" href="https://jira.beeline.com/browse/CWS-583509">CWS-583509</a>
+</td>
+                                            <td class="summary"><p>
+                Reporting Errors on Dashboards
+    </p>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-default jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;" title="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Ready for Prioritization&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;Ready for Prioritization&lt;/span&gt;">Ready for Prioritization</span>    </td>
+                                            <td class="assignee">            Krisan Davidson
+    </td>
+                                            <td class="reporter">            Krisan Davidson
+    </td>
+                                            <td class="customfield_16911"><link rel="stylesheet" href="https://jira.beeline.com/download/resources/plugin.tts/css/font-awesome.min.css"/>
+                                    <table class="aui tts-timeto-fields shorter">
+                                                <tr class="tts-timeto-field">
+                                        <td class="tts-timeto-field__countdown" >
+                                                    <div id="tts-CWS-583509-customfield_16911-1"
+                                 class="tts-lozenge tts-lozenge--error shorter">
+                                <div class="tts-lozenge__icon">
+                                    <i class="fa fa-exclamation-triangle large-icon tts-tooltip" aria-hidden="true"
+                                       title="Issue did not meet SLA"></i>
+                                </div>
+                                <div class="tts-lozenge__content tts-tooltip"
+                                     title="P3 - Fast Track">
+                                    - 2860 hours, 39 minutes</div>
+                            </div>
+                                            </td>
+                </tr>
+                            </table>
+                        
+</td>
+                                            <td class="duedate">    &nbsp;
+</td>
+                                            <td class="resolutiondate"> &nbsp; </td>
+                                            <td class="customfield_11810">    <p>None</p>
+</td>
+                                            <td class="customfield_10013">
+
+
+    <div class="shorten" id="customfield_10013-field">
+        							<span>Beeline</span>			            </div>
+</td>
+                    </tr>
+                </tbody>
+    </table>
+    </issuetable-web-component>
+    <div class="end-of-stable-message"></div>
+            <table border="1" >
+<tr>
+    <td bgcolor="#f5f5f5" colspan="12"><font size="1">
+        Generated at Wed Jul 05 10:09:20 UTC 2023 by Jayben Labrada using Jira 9.4.3#940003-sha1:84833fe47f7e7617a6279485112b627916e8cd41.
+    </font></td>
+</tr>
+</table>
+
+</body>
+</html>
